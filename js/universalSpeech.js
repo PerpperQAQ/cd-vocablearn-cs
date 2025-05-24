@@ -23,91 +23,93 @@ class UniversalSpeech {
     }
 
     createAudioMapping() {
-        // 创建词汇到音频文件的映射
+        // 创建词汇到音频文件的完整映射 - 包含所有74个词汇
         return {
-            // 计算机科学基础
-            'algorithm': 'algorithm.wav',
-            'data structure': 'data_structure.wav',
-            'database': 'database.wav',
-            'query': 'query.wav',
-            'index': 'index.wav',
-            
-            // 编程概念
-            'variable': 'variable.wav',
-            'function': 'function.wav',
-            'loop': 'loop.wav',
-            'array': 'array.wav',
-            'object': 'object.wav',
-            'class': 'class.wav',
-            'inheritance': 'inheritance.wav',
-            'polymorphism': 'polymorphism.wav',
-            'recursion': 'recursion.wav',
-            'exception': 'exception.wav',
-            'debugging': 'debugging.wav',
-            'compiler': 'compiler.wav',
-            'interpreter': 'interpreter.wav',
+            // 基础计算机科学词汇
             'api': 'api.wav',
-            'framework': 'framework.wav',
-            'library': 'library.wav',
-            'repository': 'repository.wav',
-            'syntax': 'syntax.wav',
-            'refactoring': 'refactoring.wav',
-            
-            // 人工智能
-            'artificial intelligence': 'artificial_intelligence.wav',
-            'machine learning': 'machine_learning.wav',
-            'deep learning': 'deep_learning.wav',
-            'neural network': 'neural_network.wav',
-            'neuron': 'neuron.wav',
-            'activation function': 'activation_function.wav',
-            'training': 'training.wav',
-            'backpropagation': 'backpropagation.wav',
-            'gradient descent': 'gradient_descent.wav',
             'accuracy': 'accuracy.wav',
-            'overfitting': 'overfitting.wav',
-            'cross-validation': 'cross-validation.wav',
-            'convolutional neural network': 'convolutional_neural_network.wav',
-            'recurrent neural network': 'recurrent_neural_network.wav',
-            'transformer': 'transformer.wav',
-            'feature': 'feature.wav',
-            'normalization': 'normalization.wav',
-            'dimensionality reduction': 'dimensionality_reduction.wav',
-            'computer vision': 'computer_vision.wav',
-            'natural language processing': 'natural_language_processing.wav',
-            
-            // 网络和互联网
-            'network': 'network.wav',
-            'internet': 'internet.wav',
-            'protocol': 'protocol.wav',
-            'ip address': 'ip_address.wav',
-            'dns': 'dns.wav',
-            'http': 'http.wav',
-            'https': 'https.wav',
-            'firewall': 'firewall.wav',
-            'vpn': 'vpn.wav',
+            'activation function': 'activation_function.wav',
+            'algorithm': 'algorithm.wav',
+            'architecture': 'architecture.wav',
+            'array': 'array.wav',
+            'artificial intelligence': 'artificial_intelligence.wav',
+            'backpropagation': 'backpropagation.wav',
             'bandwidth': 'bandwidth.wav',
-            'latency': 'latency.wav',
-            'router': 'router.wav',
-            'server': 'server.wav',
+            'binary tree': 'binary_tree.wav',
+            'cdn': 'cdn.wav',
+            'class': 'class.wav',
             'client': 'client.wav',
             'cloud computing': 'cloud_computing.wav',
-            'load balancer': 'load_balancer.wav',
-            'ssl/tls': 'ssl_tls.wav',
-            'cdn': 'cdn.wav',
-            'iot': 'iot.wav',
-            
-            // 系统和架构
-            'architecture': 'architecture.wav',
-            'scalability': 'scalability.wav',
-            'process': 'process.wav',
-            'thread': 'thread.wav',
+            'compiler': 'compiler.wav',
+            'computer vision': 'computer_vision.wav',
+            'convolutional neural network': 'convolutional_neural_network.wav',
+            'cross-validation': 'cross-validation.wav',
+            'dns': 'dns.wav',
+            'data structure': 'data_structure.wav',
+            'database': 'database.wav',
             'deadlock': 'deadlock.wav',
+            'debugging': 'debugging.wav',
+            'deep learning': 'deep_learning.wav',
+            'dimensionality reduction': 'dimensionality_reduction.wav',
             'encryption': 'encryption.wav',
-            'version control': 'version_control.wav',
-            'time complexity': 'time_complexity.wav',
+            'exception': 'exception.wav',
+            'feature': 'feature.wav',
+            'firewall': 'firewall.wav',
+            'framework': 'framework.wav',
+            'function': 'function.wav',
+            'gradient descent': 'gradient_descent.wav',
+            'http': 'http.wav',
+            'https': 'https.wav',
+            'hash table': 'hash_table.wav',
+            'ip address': 'ip_address.wav',
+            'index': 'index.wav',
+            'inheritance': 'inheritance.wav',
+            'internet': 'internet.wav',
+            'interpreter': 'interpreter.wav',
+            'iot': 'iot.wav',
+            'latency': 'latency.wav',
+            'library': 'library.wav',
+            'load balancer': 'load_balancer.wav',
+            'loop': 'loop.wav',
+            'machine learning': 'machine_learning.wav',
+            'natural language processing': 'natural_language_processing.wav',
+            'network': 'network.wav',
+            'neural network': 'neural_network.wav',
+            'neuron': 'neuron.wav',
+            'normalization': 'normalization.wav',
+            'object': 'object.wav',
+            'overfitting': 'overfitting.wav',
+            'polymorphism': 'polymorphism.wav',
+            'process': 'process.wav',
+            'protocol': 'protocol.wav',
+            'query': 'query.wav',
+            'recurrent neural network': 'recurrent_neural_network.wav',
+            'recursion': 'recursion.wav',
+            'refactoring': 'refactoring.wav',
+            'repository': 'repository.wav',
+            'router': 'router.wav',
+            'ssl/tls': 'ssl_tls.wav',
+            'scalability': 'scalability.wav',
+            'server': 'server.wav',
             'space complexity': 'space_complexity.wav',
-            'binary tree': 'binary_tree.wav',
-            'hash table': 'hash_table.wav'
+            'syntax': 'syntax.wav',
+            'thread': 'thread.wav',
+            'time complexity': 'time_complexity.wav',
+            'training': 'training.wav',
+            'transformer': 'transformer.wav',
+            'vpn': 'vpn.wav',
+            'variable': 'variable.wav',
+            'version control': 'version_control.wav',
+            
+            // 同时支持常见的变体形式和其他可能的词汇
+            'data': 'data.wav',
+            'computer': 'computer.wav',
+            'programming': 'programming.wav',
+            'integer': 'integer.wav',
+            'string': 'string.wav',
+            'interface': 'interface.wav',
+            'method': 'method.wav',
+            'system': 'system.wav'
         };
     }
 
@@ -280,6 +282,24 @@ class UniversalSpeech {
         if (!this.audioSupported.supported) return null;
         
         try {
+            // 标准化词汇查找
+            const normalizedWord = this.normalizeWordForAudio(word);
+            let audioFilename = null;
+            
+            // 方法1: 直接从映射查找
+            if (this.audioFileMapping[normalizedWord]) {
+                audioFilename = this.audioFileMapping[normalizedWord];
+            }
+            // 方法2: 尝试不同的变体形式
+            else {
+                audioFilename = this.findAudioVariant(normalizedWord);
+            }
+            
+            if (!audioFilename) {
+                console.log(`未找到音频文件映射: ${word} (标准化: ${normalizedWord})`);
+                return null;
+            }
+            
             // 尝试不同的音频格式，优先WAV格式
             const formats = [];
             if (this.audioSupported.canPlayWAV) formats.push('wav');
@@ -288,7 +308,9 @@ class UniversalSpeech {
             
             for (const format of formats) {
                 try {
-                    const audioUrl = `../audio/${word}.${format}`;
+                    // 如果文件名已包含扩展名，先移除
+                    const baseFilename = audioFilename.replace(/\.(wav|mp3|ogg)$/i, '');
+                    const audioUrl = `../audio/${baseFilename}.${format}`;
                     const audio = new Audio(audioUrl);
                     
                     // 测试是否可以加载
@@ -301,8 +323,8 @@ class UniversalSpeech {
                         setTimeout(() => reject(new Error('Audio load timeout')), 3000);
                     });
                     
-                    this.audioCache.set(word, audio);
-                    console.log(`音频文件加载成功: ${word}.${format}`);
+                    this.audioCache.set(normalizedWord, audio);
+                    console.log(`音频文件加载成功: ${word} -> ${baseFilename}.${format}`);
                     return audio;
                 } catch (error) {
                     // 继续尝试下一个格式
@@ -311,6 +333,50 @@ class UniversalSpeech {
             }
         } catch (error) {
             console.log(`音频文件加载失败: ${word}`, error);
+        }
+        
+        return null;
+    }
+
+    // 标准化词汇用于音频查找
+    normalizeWordForAudio(word) {
+        return word.toLowerCase()
+            .trim()
+            .replace(/[^\w\s-]/g, '') // 移除标点符号（保留连字符）
+            .replace(/\s+/g, ' '); // 合并多个空格
+    }
+
+    // 查找音频文件变体
+    findAudioVariant(normalizedWord) {
+        // 尝试不同的变体形式
+        const variants = [
+            normalizedWord,
+            normalizedWord.replace(/\s+/g, '_'), // 空格替换为下划线
+            normalizedWord.replace(/\s+/g, '-'), // 空格替换为连字符
+            normalizedWord.replace(/\s+/g, ''),  // 移除所有空格
+            normalizedWord.replace(/[-_]/g, ' '), // 连字符和下划线替换为空格
+            normalizedWord.replace(/[-_]/g, ''),  // 移除连字符和下划线
+        ];
+        
+        // 逐一检查映射
+        for (const variant of variants) {
+            if (this.audioFileMapping[variant]) {
+                console.log(`找到音频变体: ${normalizedWord} -> ${variant}`);
+                return this.audioFileMapping[variant];
+            }
+        }
+        
+        // 尝试部分匹配（用于复合词）
+        const words = normalizedWord.split(/\s+/);
+        if (words.length > 1) {
+            // 尝试匹配最长的词组合
+            for (let i = words.length; i > 0; i--) {
+                const combination = words.slice(0, i).join(' ');
+                if (this.audioFileMapping[combination]) {
+                    console.log(`找到部分匹配: ${normalizedWord} -> ${combination}`);
+                    return this.audioFileMapping[combination];
+                }
+            }
         }
         
         return null;
@@ -433,23 +499,34 @@ class UniversalSpeech {
         return methods;
     }
 
-    // 播放音频文件
+    // 播放音频文件（优化版）
     async playAudioFile(text) {
-        const word = text.toLowerCase().trim();
+        const normalizedText = this.normalizeWordForAudio(text);
         
         // 检查缓存
-        if (this.audioCache.has(word)) {
-            const audio = this.audioCache.get(word);
+        if (this.audioCache.has(normalizedText)) {
+            const audio = this.audioCache.get(normalizedText);
             audio.currentTime = 0;
-            await audio.play();
-            return;
+            try {
+                await audio.play();
+                return;
+            } catch (error) {
+                console.warn(`缓存音频播放失败: ${text}`, error);
+                // 清除有问题的缓存
+                this.audioCache.delete(normalizedText);
+            }
         }
         
         // 尝试加载音频文件
-        const audio = await this.loadAudioFile(word);
+        const audio = await this.loadAudioFile(text);
         if (audio) {
-            await audio.play();
-            return;
+            try {
+                await audio.play();
+                return;
+            } catch (error) {
+                console.warn(`音频播放失败: ${text}`, error);
+                throw error;
+            }
         }
         
         throw new Error('音频文件不可用');

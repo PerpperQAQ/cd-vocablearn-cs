@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>语音功能测试 - VocabLearn CS</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .status {
+            background: #e3f2fd;
+            border: 1px solid #2196f3;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .vocabulary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .word-item {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .word-text {
+            font-weight: 500;
+            color: #333;
+        }
+        .play-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 14px;
+            min-width: 60px;
+        }
+        .play-btn:hover {
+            background: #45a049;
+        }
+        .play-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .play-btn.error {
+            background: #f44336;
+        }
+        .play-btn.success {
+            background: #2196f3;
+        }
+        .controls {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .controls button {
+            background: #2196f3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .controls button:hover {
+            background: #1976d2;
+        }
+        .stats {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background: #f0f0f0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎵 语音功能完整性测试</h1>
+        
+        <div class="status" id="status">
+            <strong>状态:</strong> 正在初始化语音系统...
+        </div>
+        
+        <div class="controls">
+            <button onclick="testAllVocabulary()">🔊 测试所有词汇</button>
+            <button onclick="testSystemStatus()">🔍 检查系统状态</button>
+            <button onclick="clearResults()">🧹 清除结果</button>
+        </div>
+        
+        <div class="stats" id="stats">
+            <div>总词汇数: <span id="total-count">0</span></div>
+            <div>测试成功: <span id="success-count">0</span></div>
+            <div>测试失败: <span id="error-count">0</span></div>
+            <div>完成率: <span id="completion-rate">0%</span></div>
+        </div>
+        
+        <div class="vocabulary-grid" id="vocabulary-grid">
+            <!-- 词汇项目将在这里生成 -->
+        </div>
+    </div>
+
+    <script src="js/universalSpeech.js"></script>
+    <script>
+        // 完整词汇列表
+        const testVocabulary = [
+            "API", "Accuracy", "Activation Function", "Algorithm", "Architecture", "Array",
+            "Artificial Intelligence", "Backpropagation", "Bandwidth", "Binary Tree", "CDN",
+            "Class", "Client", "Cloud Computing", "Compiler", "Computer Vision",
+            "Convolutional Neural Network", "Cross-validation", "DNS", "Data Structure",
+            "Database", "Deadlock", "Debugging", "Deep Learning", "Dimensionality Reduction",
+            "Encryption", "Exception", "Feature", "Firewall", "Framework", "Function",
+            "Gradient Descent", "HTTP", "HTTPS", "Hash Table", "IP Address", "Index",
+            "Inheritance", "Internet", "Interpreter", "IoT", "Latency", "Library",
+            "Load Balancer", "Loop", "Machine Learning", "Natural Language Processing",
+            "Network", "Neural Network", "Neuron", "Normalization", "Object", "Overfitting",
+            "Polymorphism", "Process", "Protocol", "Query", "Recurrent Neural Network",
+            "Recursion", "Refactoring", "Repository", "Router", "SSL/TLS", "Scalability",
+            "Server", "Space Complexity", "Syntax", "Thread", "Time Complexity", "Training",
+            "Transformer", "VPN", "Variable", "Version Control"
+        ];
+
+        let testResults = {
+            total: 0,
+            success: 0,
+            error: 0
+        };
+
+        function updateStatus(message, type = 'info') {
+            const statusEl = document.getElementById('status');
+            const colors = {
+                'info': '#e3f2fd',
+                'success': '#e8f5e8',
+                'error': '#ffebee'
+            };
+            statusEl.style.backgroundColor = colors[type] || colors.info;
+            statusEl.innerHTML = `<strong>状态:</strong> ${message}`;
+        }
+
+        function updateStats() {
+            document.getElementById('total-count').textContent = testResults.total;
+            document.getElementById('success-count').textContent = testResults.success;
+            document.getElementById('error-count').textContent = testResults.error;
+            
+            const rate = testResults.total > 0 ? 
+                Math.round((testResults.success / testResults.total) * 100) : 0;
+            document.getElementById('completion-rate').textContent = rate + '%';
+        }
+
+        function createVocabularyGrid() {
+            const grid = document.getElementById('vocabulary-grid');
+            grid.innerHTML = '';
+            
+            testVocabulary.forEach((word, index) => {
+                const item = document.createElement('div');
+                item.className = 'word-item';
+                item.innerHTML = `
+                    <span class="word-text">${word}</span>
+                    <button class="play-btn" id="btn-${index}" onclick="testSingleWord('${word}', ${index})">
+                        播放
+                    </button>
+                `;
+                grid.appendChild(item);
+            });
+            
+            testResults.total = testVocabulary.length;
+            updateStats();
+        }
+
+        async function testSingleWord(word, index) {
+            const btn = document.getElementById(`btn-${index}`);
+            btn.disabled = true;
+            btn.textContent = '播放中...';
+            btn.className = 'play-btn';
+            
+            try {
+                await universalSpeech.speak(word);
+                btn.textContent = '✅ 成功';
+                btn.className = 'play-btn success';
+                testResults.success++;
+                updateStats();
+            } catch (error) {
+                console.error(`词汇 "${word}" 语音播放失败:`, error);
+                btn.textContent = '❌ 失败';
+                btn.className = 'play-btn error';
+                testResults.error++;
+                updateStats();
+            } finally {
+                btn.disabled = false;
+                setTimeout(() => {
+                    btn.textContent = '播放';
+                    btn.className = 'play-btn';
+                }, 3000);
+            }
+        }
+
+        async function testAllVocabulary() {
+            updateStatus('开始批量测试所有词汇...', 'info');
+            clearResults();
+            
+            for (let i = 0; i < testVocabulary.length; i++) {
+                const word = testVocabulary[i];
+                updateStatus(`测试进度: ${i + 1}/${testVocabulary.length} - 当前词汇: ${word}`, 'info');
+                
+                try {
+                    await testSingleWord(word, i);
+                    // 添加延迟避免播放冲突
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                } catch (error) {
+                    console.error(`批量测试失败: ${word}`, error);
+                }
+            }
+            
+            const successRate = Math.round((testResults.success / testResults.total) * 100);
+            updateStatus(`批量测试完成! 成功率: ${successRate}% (${testResults.success}/${testResults.total})`, 
+                successRate >= 90 ? 'success' : 'error');
+        }
+
+        function testSystemStatus() {
+            if (window.universalSpeech) {
+                const status = universalSpeech.getStatus();
+                console.log('UniversalSpeech 状态:', status);
+                
+                let statusText = `
+                    系统状态检查:<br>
+                    初始化: ${status.isInitialized ? '✅' : '❌'}<br>
+                    用户交互: ${status.hasUserInteracted ? '✅' : '❌'}<br>
+                    语音加载: ${status.voicesLoaded ? '✅' : '❌'}<br>
+                    可用语音: ${status.voiceCount} 个<br>
+                    平台: ${status.platform.name}<br>
+                    语音支持: ${status.platform.speechSupport}<br>
+                    音频缓存: ${status.audioCache} 个文件
+                `;
+                
+                updateStatus(statusText, 'info');
+            } else {
+                updateStatus('UniversalSpeech 未初始化', 'error');
+            }
+        }
+
+        function clearResults() {
+            testResults = { total: testVocabulary.length, success: 0, error: 0 };
+            updateStats();
+            
+            // 重置按钮状态
+            testVocabulary.forEach((word, index) => {
+                const btn = document.getElementById(`btn-${index}`);
+                if (btn) {
+                    btn.textContent = '播放';
+                    btn.className = 'play-btn';
+                    btn.disabled = false;
+                }
+            });
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            createVocabularyGrid();
+            
+            // 等待 UniversalSpeech 初始化
+            const checkInit = () => {
+                if (window.universalSpeech && universalSpeech.isInitialized) {
+                    updateStatus('语音系统初始化完成，可以开始测试', 'success');
+                    testSystemStatus();
+                } else {
+                    setTimeout(checkInit, 500);
+                }
+            };
+            
+            setTimeout(checkInit, 1000);
+        });
+    </script>
+</body>
+</html> 

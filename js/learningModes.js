@@ -9,6 +9,8 @@ class LearningModes {
         this.currentTerm = null;
         this.isActive = false;
         this.audio = null;
+        this.hasUserGesture = false;
+        this.initUserGestureDetection();
         
         // 键盘音效设置
         this.keyboardSounds = {
@@ -17,6 +19,21 @@ class LearningModes {
         };
         
         this.init();
+    }
+
+    initUserGestureDetection() {
+        // 检测用户首次交互，用于启用语音功能
+        const events = ['click', 'touchstart', 'keydown'];
+        const enableGesture = () => {
+            this.hasUserGesture = true;
+            events.forEach(event => {
+                document.removeEventListener(event, enableGesture);
+            });
+        };
+        
+        events.forEach(event => {
+            document.addEventListener(event, enableGesture, { once: true });
+        });
     }
 
     init() {
@@ -508,18 +525,75 @@ class LearningModes {
         return options.sort(() => Math.random() - 0.5);
     }
 
-    // 播放发音
+    // 播放发音 - 使用增强的语音降级方案
     playPronunciation(word) {
-        if ('speechSynthesis' in window) {
-            // 停止当前播放
+        if (window.speechFallback && window.speechFallback.isSupported) {
+            window.speechFallback.speak(word)
+                .then(() => {
+                    console.log('语音播放成功:', word);
+                })
+                .catch((error) => {
+                    console.error('语音播放失败:', error);
+                    this.showMessage('语音播放失败，请重试', 'warning');
+                });
+        } else {
+            // 如果降级方案不可用，使用原生方法
+            this.fallbackSpeech(word);
+        }
+    }
+
+    fallbackSpeech(word) {
+        if (!('speechSynthesis' in window)) {
+            this.showMessage('您的浏览器不支持语音合成功能', 'warning');
+            return;
+        }
+
+        try {
             speechSynthesis.cancel();
-            
             const utterance = new SpeechSynthesisUtterance(word);
             utterance.lang = 'en-US';
             utterance.rate = 0.8;
-            utterance.volume = 0.8;
+            utterance.volume = 0.9;
+
+            utterance.onerror = () => {
+                this.showMessage('语音播放失败，请重试', 'warning');
+            };
+
             speechSynthesis.speak(utterance);
+        } catch (error) {
+            this.showMessage('语音播放功能出现错误', 'error');
         }
+    }
+
+    // 检查语音合成支持
+    checkSpeechSynthesisSupport() {
+        return 'speechSynthesis' in window && speechSynthesis.getVoices().length > 0;
+    }
+
+    // 检测移动设备
+    isMobile() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+
+    // 检测移动Safari
+    isMobileSafari() {
+        return /iPhone|iPad|iPod/i.test(navigator.userAgent) && /Safari/i.test(navigator.userAgent);
+    }
+
+    // 确保在用户手势中执行
+    ensureUserGesture(callback) {
+        if (this.hasUserGesture) {
+            callback();
+            return;
+        }
+
+        this.showMessage('移动设备需要点击屏幕后才能播放语音，请重试', 'info');
+        this.hasUserGesture = true;
+        
+        // 延迟执行，让用户有时间点击
+        setTimeout(() => {
+            callback();
+        }, 100);
     }
 
     // 播放当前音频

@@ -8,7 +8,24 @@ class CategoryTemplate {
         this.itemsPerPage = 10;
         this.currentFilter = 'all';
         this.searchQuery = '';
+        this.hasUserGesture = false;
+        this.initUserGestureDetection();
         this.init();
+    }
+
+    initUserGestureDetection() {
+        // 检测用户首次交互，用于启用语音功能
+        const events = ['click', 'touchstart', 'keydown'];
+        const enableGesture = () => {
+            this.hasUserGesture = true;
+            events.forEach(event => {
+                document.removeEventListener(event, enableGesture);
+            });
+        };
+        
+        events.forEach(event => {
+            document.addEventListener(event, enableGesture, { once: true });
+        });
     }
 
     async init() {
@@ -426,15 +443,111 @@ class CategoryTemplate {
     }
 
     playPronunciation(term) {
-        // 使用Web Speech API播放发音
-        if ('speechSynthesis' in window) {
+        // 使用增强的语音降级方案
+        if (window.speechFallback && window.speechFallback.isSupported) {
+            window.speechFallback.speak(term)
+                .then(() => {
+                    console.log('语音播放成功:', term);
+                })
+                .catch((error) => {
+                    console.error('语音播放失败:', error);
+                    this.showMessage('语音播放失败，请重试', 'warning');
+                });
+        } else {
+            // 如果降级方案不可用，使用原生方法
+            this.fallbackSpeech(term);
+        }
+    }
+
+    fallbackSpeech(term) {
+        if (!('speechSynthesis' in window)) {
+            this.showMessage('您的浏览器不支持语音合成功能', 'warning');
+            return;
+        }
+
+        try {
+            speechSynthesis.cancel();
             const utterance = new SpeechSynthesisUtterance(term);
             utterance.lang = 'en-US';
             utterance.rate = 0.8;
+            utterance.volume = 0.9;
+
+            utterance.onerror = () => {
+                this.showMessage('语音播放失败，请重试', 'warning');
+            };
+
             speechSynthesis.speak(utterance);
-        } else {
-            this.showMessage('您的浏览器不支持语音合成功能', 'warning');
+        } catch (error) {
+            this.showMessage('语音播放功能出现错误', 'error');
         }
+    }
+
+    // 检查语音合成支持
+    checkSpeechSynthesisSupport() {
+        if (!('speechSynthesis' in window)) {
+            return false;
+        }
+
+        // 检查是否有可用的语音
+        if (speechSynthesis.getVoices().length === 0) {
+            // 延迟检查，某些浏览器需要时间加载语音
+            return new Promise((resolve) => {
+                speechSynthesis.addEventListener('voiceschanged', () => {
+                    resolve(speechSynthesis.getVoices().length > 0);
+                }, { once: true });
+                
+                // 超时保护
+                setTimeout(() => resolve(false), 3000);
+            });
+        }
+
+        return true;
+    }
+
+    // 检测移动设备
+    isMobile() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+
+    // 检测移动Safari
+    isMobileSafari() {
+        return /iPhone|iPad|iPod/i.test(navigator.userAgent) && /Safari/i.test(navigator.userAgent);
+    }
+
+    // 确保在用户手势中执行
+    ensureUserGesture(callback) {
+        // 检查是否已经在用户手势中
+        if (this.hasUserGesture) {
+            callback();
+            return;
+        }
+
+        // 创建提示，要求用户点击
+        const gesturePrompt = document.createElement('div');
+        gesturePrompt.className = 'gesture-prompt';
+        gesturePrompt.innerHTML = `
+            <div class="gesture-prompt-content">
+                <i class="fas fa-hand-pointer"></i>
+                <p>点击此处启用语音播放</p>
+                <button class="btn btn-primary">启用语音</button>
+            </div>
+        `;
+
+        document.body.appendChild(gesturePrompt);
+
+        const enableButton = gesturePrompt.querySelector('button');
+        enableButton.addEventListener('click', () => {
+            this.hasUserGesture = true;
+            gesturePrompt.remove();
+            callback();
+        });
+
+        // 5秒后自动移除
+        setTimeout(() => {
+            if (gesturePrompt.parentNode) {
+                gesturePrompt.remove();
+            }
+        }, 5000);
     }
 
     addToFavorites(termId) {

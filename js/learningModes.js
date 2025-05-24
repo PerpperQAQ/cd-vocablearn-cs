@@ -525,20 +525,28 @@ class LearningModes {
         return options.sort(() => Math.random() - 0.5);
     }
 
-    // 播放发音 - 使用增强的语音降级方案
+    // 播放发音 - 使用通用语音解决方案
     playPronunciation(word) {
-        if (window.speechFallback && window.speechFallback.isSupported) {
-            window.speechFallback.speak(word)
+        if (window.universalSpeech && window.universalSpeech.isInitialized) {
+            window.universalSpeech.speak(word)
                 .then(() => {
                     console.log('语音播放成功:', word);
                 })
                 .catch((error) => {
                     console.error('语音播放失败:', error);
-                    this.showMessage('语音播放失败，请重试', 'warning');
+                    // 不显示错误消息，让用户重试
+                    console.log('语音播放遇到问题，用户可以重试');
                 });
         } else {
-            // 如果降级方案不可用，使用原生方法
-            this.fallbackSpeech(word);
+            console.warn('UniversalSpeech 尚未准备就绪');
+            // 延迟重试
+            setTimeout(() => {
+                if (window.universalSpeech) {
+                    this.playPronunciation(word);
+                } else {
+                    this.showMessage('语音功能正在加载，请稍后重试', 'info');
+                }
+            }, 1000);
         }
     }
 

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VocabLearn CS - 计算机科学英语词汇学习平台</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="images/favicon.png" type="image/png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- 头部导航 -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <img src="images/logo.svg" alt="VocabLearn CS" class="logo-img">
+                    <span class="logo-text">VocabLearn CS</span>
+                </div>
+                <div class="nav-menu" id="nav-menu">
+                    <a href="#home" class="nav-link">首页</a>
+                    <a href="#categories" class="nav-link">分类</a>
+                    <a href="#features" class="nav-link">功能</a>
+                    <a href="#about" class="nav-link">关于</a>
+                </div>
+                <div class="nav-toggle" id="nav-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <button class="theme-toggle" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 主要内容 -->
+    <main>
+        <!-- 英雄区域 -->
+        <section id="home" class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        掌握计算机科学
+                        <span class="highlight">英语词汇</span>
+                    </h1>
+                    <p class="hero-description">
+                        专为计算机科学学习者设计的英语词汇学习平台，涵盖人工智能、编程、网络技术等核心领域，让您在技术学习路上无语言障碍。
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#categories" class="btn btn-primary">开始学习</a>
+                        <a href="#features" class="btn btn-secondary">了解更多</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="hero-graphic">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 分类展示 -->
+        <section id="categories" class="categories">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">学习分类</h2>
+                    <p class="section-description">选择您感兴趣的领域，开始您的词汇学习之旅</p>
+                </div>
+                <div class="categories-grid" id="categories-grid">
+                    <!-- 分类卡片将通过JavaScript动态加载 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 功能特色 -->
+        <section id="features" class="features">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">平台特色</h2>
+                    <p class="section-description">多种学习方式，让您高效掌握专业词汇</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="feature-title">智能测验</h3>
+                        <p class="feature-description">互动式测验系统，通过多种题型巩固学习效果</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                        <h3 class="feature-title">分类学习</h3>
+                        <p class="feature-description">按领域分类的词汇体系，针对性强化专业术语</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="feature-title">进度跟踪</h3>
+                        <p class="feature-description">实时跟踪学习进度，量化学习成果</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3 class="feature-title">响应式设计</h3>
+                        <p class="feature-description">支持多设备访问，随时随地学习</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 关于我们 -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2 class="section-title">关于 VocabLearn CS</h2>
+                        <p>
+                            VocabLearn CS 是一个专门为计算机科学学习者打造的英语词汇学习平台。我们深知在技术学习过程中，语言障碍往往成为阻碍进步的重要因素。
+                        </p>
+                        <p>
+                            通过精心整理的专业词汇库和互动式学习方式，我们帮助学习者快速掌握计算机科学各个领域的核心术语，为深入学习技术知识奠定坚实的语言基础。
+                        </p>
+                        <div class="stats">
+                            <div class="stat-item">
+                                <span class="stat-number">500+</span>
+                                <span class="stat-label">专业词汇</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">4</span>
+                                <span class="stat-label">核心分类</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">100%</span>
+                                <span class="stat-label">免费使用</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-image">
+                        <div class="about-graphic">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <img src="images/logo.svg" alt="VocabLearn CS" class="logo-img">
+                        <span class="logo-text">VocabLearn CS</span>
+                    </div>
+                    <p class="footer-description">专业的计算机科学英语词汇学习平台</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>学习分类</h4>
+                        <ul>
+                            <li><a href="pages/computer-science.html">计算机科学</a></li>
+                            <li><a href="pages/artificial-intelligence.html">人工智能</a></li>
+                            <li><a href="pages/programming.html">编程语言</a></li>
+                            <li><a href="pages/internet.html">网络技术</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>平台信息</h4>
+                        <ul>
+                            <li><a href="#about">关于我们</a></li>
+                            <li><a href="#features">功能特色</a></li>
+                            <li><a href="#categories">学习分类</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 VocabLearn CS. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html> 

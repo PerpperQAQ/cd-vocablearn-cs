@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>编程语言 - VocabLearn CS</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/category.css">
+    <link rel="stylesheet" href="../css/learningModes.css">
+    <link rel="icon" href="../images/favicon.png" type="image/png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- 头部导航 -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <img src="../images/logo.svg" alt="VocabLearn CS" class="logo-img">
+                    <span class="logo-text">VocabLearn CS</span>
+                </div>
+                <div class="nav-menu" id="nav-menu">
+                    <a href="../index.html" class="nav-link">首页</a>
+                    <a href="../index.html#categories" class="nav-link">分类</a>
+                    <a href="../index.html#features" class="nav-link">功能</a>
+                    <a href="../index.html#about" class="nav-link">关于</a>
+                </div>
+                <div class="nav-toggle" id="nav-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <button class="theme-toggle" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 页面主体 -->
+    <main class="main-content">
+        <!-- 页面标题区域 -->
+        <section class="page-header">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="../index.html">首页</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>编程语言</span>
+                </div>
+                <div class="header-content">
+                    <div class="header-text">
+                        <h1 id="page-title">编程语言</h1>
+                        <p class="page-description">
+                            编程语言语法、开发工具、软件工程等编程实践中的关键术语和概念。
+                        </p>
+                    </div>
+                    <div class="header-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 统计信息 -->
+        <section class="stats-section">
+            <div class="container">
+                <div class="stats-grid" id="stats-info">
+                    <!-- 统计数据将通过JavaScript动态加载 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 搜索和筛选 -->
+        <section class="controls-section">
+            <div class="container">
+                <div class="controls-grid">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="search-input" placeholder="搜索词汇、翻译或定义...">
+                    </div>
+                    <div class="filter-group">
+                        <select id="difficulty-filter" class="filter-select">
+                            <option value="all">全部难度</option>
+                        </select>
+                        <select id="category-filter" class="filter-select">
+                            <option value="all">全部分类</option>
+                        </select>
+                    </div>
+                    <button id="start-quiz-btn" class="btn btn-primary quiz-btn">
+                        <i class="fas fa-play"></i>
+                        开始测验
+                    </button>
+                    <button id="learning-modes-btn" class="btn btn-secondary learning-btn">
+                        <i class="fas fa-graduation-cap"></i>
+                        学习模式
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 词汇列表 -->
+        <section id="terms-section" class="terms-section">
+            <div class="container">
+                <div id="terms-list" class="terms-grid">
+                    <!-- 词汇卡片将通过JavaScript动态加载 -->
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p>正在加载词汇数据...</p>
+                    </div>
+                </div>
+
+                <!-- 分页 -->
+                <div id="pagination" class="pagination">
+                    <!-- 分页按钮将通过JavaScript动态生成 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 测验区域 -->
+        <section id="quiz-section" class="quiz-section" style="display: none;">
+            <div class="container">
+                <div class="quiz-container">
+                    <div class="quiz-header">
+                        <h2>词汇测验</h2>
+                        <button id="close-quiz-btn" class="btn-close">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div id="quiz-content">
+                        <!-- 测验内容将通过JavaScript动态加载 -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="back-to-top" style="display: none;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <img src="../images/logo.svg" alt="VocabLearn CS" class="logo-img">
+                        <span class="logo-text">VocabLearn CS</span>
+                    </div>
+                    <p class="footer-description">专业的计算机科学英语词汇学习平台</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>学习分类</h4>
+                        <ul>
+                            <li><a href="computer-science.html">计算机科学</a></li>
+                            <li><a href="artificial-intelligence.html">人工智能</a></li>
+                            <li><a href="programming.html">编程语言</a></li>
+                            <li><a href="internet.html">网络技术</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>平台信息</h4>
+                        <ul>
+                            <li><a href="../index.html#about">关于我们</a></li>
+                            <li><a href="../index.html#features">功能特色</a></li>
+                            <li><a href="../index.html#categories">学习分类</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 VocabLearn CS. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript文件 -->
+    <script src="../app.js"></script>
+    <script src="../js/categoryTemplate.js"></script>
+    <script src="../js/interactiveQuiz.js"></script>
+    <script src="../js/learningModes.js"></script>
+</body>
+</html> 

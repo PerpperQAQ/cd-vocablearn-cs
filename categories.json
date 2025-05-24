@@ -1,0 +1,44 @@
+{
+  "categories": [
+    {
+      "id": "computer-science",
+      "title": "计算机科学",
+      "description": "计算机科学基础概念和核心术语，包括数据结构、算法、系统架构等fundamental知识点。",
+      "color": "#3B82F6",
+      "icon": "fas fa-microchip",
+      "termCount": 120,
+      "difficulty": "中等",
+      "url": "pages/computer-science.html"
+    },
+    {
+      "id": "artificial-intelligence",
+      "title": "人工智能",
+      "description": "机器学习、深度学习、神经网络等AI核心概念，涵盖从传统ML到现代深度学习的专业词汇。",
+      "color": "#8B5CF6",
+      "icon": "fas fa-robot",
+      "termCount": 150,
+      "difficulty": "困难",
+      "url": "pages/artificial-intelligence.html"
+    },
+    {
+      "id": "programming",
+      "title": "编程语言",
+      "description": "编程语言语法、开发工具、软件工程等编程实践中的关键术语和概念。",
+      "color": "#10B981",
+      "icon": "fas fa-code",
+      "termCount": 130,
+      "difficulty": "简单",
+      "url": "pages/programming.html"
+    },
+    {
+      "id": "internet",
+      "title": "网络技术",
+      "description": "网络协议、Web技术、云计算、网络安全等互联网技术领域的专业词汇。",
+      "color": "#F59E0B",
+      "icon": "fas fa-globe",
+      "termCount": 110,
+      "difficulty": "中等",
+      "url": "pages/internet.html"
+    }
+  ]
+} 

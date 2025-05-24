@@ -15,8 +15,100 @@ class UniversalSpeech {
         this.audioCache = new Map();
         this.audioSupported = this.checkAudioSupport();
         
+        // 高质量音频文件映射
+        this.audioFileMapping = this.createAudioMapping();
+        
         // 初始化
         this.init();
+    }
+
+    createAudioMapping() {
+        // 创建词汇到音频文件的映射
+        return {
+            // 计算机科学基础
+            'algorithm': 'algorithm.wav',
+            'data structure': 'data_structure.wav',
+            'database': 'database.wav',
+            'query': 'query.wav',
+            'index': 'index.wav',
+            
+            // 编程概念
+            'variable': 'variable.wav',
+            'function': 'function.wav',
+            'loop': 'loop.wav',
+            'array': 'array.wav',
+            'object': 'object.wav',
+            'class': 'class.wav',
+            'inheritance': 'inheritance.wav',
+            'polymorphism': 'polymorphism.wav',
+            'recursion': 'recursion.wav',
+            'exception': 'exception.wav',
+            'debugging': 'debugging.wav',
+            'compiler': 'compiler.wav',
+            'interpreter': 'interpreter.wav',
+            'api': 'api.wav',
+            'framework': 'framework.wav',
+            'library': 'library.wav',
+            'repository': 'repository.wav',
+            'syntax': 'syntax.wav',
+            'refactoring': 'refactoring.wav',
+            
+            // 人工智能
+            'artificial intelligence': 'artificial_intelligence.wav',
+            'machine learning': 'machine_learning.wav',
+            'deep learning': 'deep_learning.wav',
+            'neural network': 'neural_network.wav',
+            'neuron': 'neuron.wav',
+            'activation function': 'activation_function.wav',
+            'training': 'training.wav',
+            'backpropagation': 'backpropagation.wav',
+            'gradient descent': 'gradient_descent.wav',
+            'accuracy': 'accuracy.wav',
+            'overfitting': 'overfitting.wav',
+            'cross-validation': 'cross-validation.wav',
+            'convolutional neural network': 'convolutional_neural_network.wav',
+            'recurrent neural network': 'recurrent_neural_network.wav',
+            'transformer': 'transformer.wav',
+            'feature': 'feature.wav',
+            'normalization': 'normalization.wav',
+            'dimensionality reduction': 'dimensionality_reduction.wav',
+            'computer vision': 'computer_vision.wav',
+            'natural language processing': 'natural_language_processing.wav',
+            
+            // 网络和互联网
+            'network': 'network.wav',
+            'internet': 'internet.wav',
+            'protocol': 'protocol.wav',
+            'ip address': 'ip_address.wav',
+            'dns': 'dns.wav',
+            'http': 'http.wav',
+            'https': 'https.wav',
+            'firewall': 'firewall.wav',
+            'vpn': 'vpn.wav',
+            'bandwidth': 'bandwidth.wav',
+            'latency': 'latency.wav',
+            'router': 'router.wav',
+            'server': 'server.wav',
+            'client': 'client.wav',
+            'cloud computing': 'cloud_computing.wav',
+            'load balancer': 'load_balancer.wav',
+            'ssl/tls': 'ssl_tls.wav',
+            'cdn': 'cdn.wav',
+            'iot': 'iot.wav',
+            
+            // 系统和架构
+            'architecture': 'architecture.wav',
+            'scalability': 'scalability.wav',
+            'process': 'process.wav',
+            'thread': 'thread.wav',
+            'deadlock': 'deadlock.wav',
+            'encryption': 'encryption.wav',
+            'version control': 'version_control.wav',
+            'time complexity': 'time_complexity.wav',
+            'space complexity': 'space_complexity.wav',
+            'binary tree': 'binary_tree.wav',
+            'hash table': 'hash_table.wav'
+        };
     }
 
     detectPlatform() {
